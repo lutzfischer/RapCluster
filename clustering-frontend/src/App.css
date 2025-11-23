@@ -1,0 +1,340 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6;
+  color: #333;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.App-header {
+  background-color: #28a745; /* A pleasant green */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.App-main {
+  padding: 30px;
+}
+
+.clustering-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+section {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+h2 {
+  color: #28a745;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: calc(100% - 22px); /* Account for padding and border */
+}
+
+.form-group input[type="file"] {
+    padding: 5px 0;
+}
+
+.file-name {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.file-name button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.param-control label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.param-custom-settings {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.param-custom-settings h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.param-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.param-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.param-item label {
+    font-weight: normal;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.param-item input[type="checkbox"] {
+    width: auto;
+    margin-top: 5px;
+}
+
+.nullable-info {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 3px;
+}
+
+.submit-button {
+  background-color: #007bff; /* Blue for action */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.submit-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.results-section {
+  margin-top: 40px;
+  border-top: 1px dashed #ccc;
+  padding-top: 30px;
+}
+
+.metrics-summary {
+  background-color: #e9f7ef;
+  border: 1px solid #d4edda;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.metrics-summary h3 {
+  color: #28a745;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.metrics-summary p {
+  margin: 8px 0;
+}
+
+.visualization {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.visualization h3 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.cluster-details {
+    background-color: #f0f8ff;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.cluster-details h3 {
+    color: #6f42c1; /* Purple for details */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.cluster-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+.cluster-details th,
+.cluster-details td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.cluster-details th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+.download-button {
+  background-color: #6c757d; /* Greyish color for download */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 15px; /* Space below the button */
+}
+
+.download-button:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.download-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .clustering-form {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
+  }
+  .submit-button {
+      grid-column: 1 / -1; /* Make button span all columns */
+  }
+}
+.plot-caption {
+  background-color: #fff8dc;
+  border: 1px solid #f0e68c;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 15px;
+  font-size: 0.95em;
+  color: #555;
+}
+.plot-caption strong {
+  color: #000;
+}
+
+.tab-buttons button {
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  background-color: #e8e8e8;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s ease-in-out;
+}
+
+.tab-buttons button.active {
+  background-color: #28a745;
+  color: white;
+  border-color: #28a745;
+  transform: scale(1.03);
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+
+.subnetwork {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px dashed #ccc;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+}
+.subnetwork h4 {
+  margin-top: 0;
+  color: #6f42c1;
+}
+
+.ReactModal__Content,
+.guide-modal {
+  max-width: 900px;
+  max-height: 90vh; 
+  overflow-y: auto;
+  margin: auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgb(185, 216, 188);
+  box-shadow: 0 0 15px rgb(245, 243, 243);
+}
+.App-header img {
+  height: 50px;
+  margin-right: 20px;
+}
