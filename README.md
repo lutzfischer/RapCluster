@@ -25,6 +25,6 @@ npm install
 cd clustering-frontend
 npm start
 ## License
-Apache-2.0 license
+MIT license
 ## Contact
 Ahmad Lutfi – ahmad.lutfi(at)tu-berlin.de
