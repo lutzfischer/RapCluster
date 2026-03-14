@@ -1,11 +1,22 @@
 from __future__ import annotations
-
 import argparse
 import os
 import sys
-
 import matplotlib.pyplot as plt
 
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans"],
+    "font.size": 17,
+    "axes.titlesize": 17,
+    "axes.labelsize": 17,
+    "xtick.labelsize": 17,
+    "ytick.labelsize": 17,
+    "legend.fontsize": 17,
+    "figure.titlesize": 17,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+})
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -34,23 +45,6 @@ def validate_lengths(series: dict[str, list[float]], years: list[int]) -> None:
                 f"Series '{name}' has length {len(values)}, expected {n_years}"
             )
 
-
-def add_endpoint_label(
-    ax: plt.Axes,
-    x: list[int],
-    y: list[float],
-    text: str,
-    xoffset: int = 8,
-    yoffset: int = 0,
-) -> None:
-    ax.annotate(
-        text,
-        xy=(x[-1], y[-1]),
-        xytext=(xoffset, yoffset),
-        textcoords="offset points",
-        va="center",
-        fontsize=9,
-    )
 
 def main() -> int:
     args = parse_args()
@@ -150,117 +144,104 @@ def main() -> int:
     fig, (ax1, ax2) = plt.subplots(
         2,
         1,
-        figsize=(12, 9),
+        figsize=(14, 16),
         sharex=True,
-        gridspec_kw={"height_ratios": [1, 1.5]},
+        gridspec_kw={"height_ratios": [1, 1.7]},
         constrained_layout=True,
     )
+    
+    fig.set_constrained_layout_pads(hspace=0.08, h_pad=0.02, w_pad=0.02)
 
     ax1.plot(
         years,
         total_articles,
-        linewidth=2.5,
+        linewidth=2.8,
         marker="o",
         markersize=4,
         label="Total articles",
     )
     ax1.set_ylabel("Articles per year")
-    ax1.set_title("Longitudinal summary of clustering-method reporting (2000–2025)")
-    ax1.grid(True, alpha=0.3)
+    #ax1.set_title("Longitudinal summary of clustering-method reporting (2000–2025)")
+    ax1.grid(True, alpha=0.25)
     ax1.spines["top"].set_visible(False)
     ax1.spines["right"].set_visible(False)
-    add_endpoint_label(ax1, years, total_articles, f"{total_articles[-1]:,}")
 
-    for label, values in percent_series.items():
-        ax2.plot(
-            years,
-            values,
-            linewidth=2.0,
-            marker="o",
-            markersize=3,
-            label=label,
-        )
+    ax2.plot(
+        years,
+        any_algorithm_pct,
+        linewidth=3.0,
+        label="Any algorithm match",
+    )
+    ax2.plot(
+        years,
+        missing_reporting_pct,
+        linewidth=3.0,
+        label="Missing reporting signals",
+    )
+
+    ax2.plot(
+        years,
+        missing_parameters_pct,
+        linewidth=1.8,
+        linestyle="--",
+        label="Missing parameters",
+    )
+    ax2.plot(
+        years,
+        missing_justification_pct,
+        linewidth=1.8,
+        linestyle="--",
+        label="Missing justification",
+    )
+    ax2.plot(
+        years,
+        missing_evaluation_pct,
+        linewidth=1.8,
+        linestyle="--",
+        label="Missing evaluation",
+    )
+    ax2.plot(
+        years,
+        missing_tuning_pct,
+        linewidth=1.8,
+        linestyle="--",
+        label="Missing tuning",
+    )
 
     ax2.set_xlabel("Year")
     ax2.set_ylabel("Articles (%)")
-    ax2.set_ylim(0, 105)
-    ax2.grid(True, alpha=0.3)
+    ax2.set_ylim(20, 102)
+    ax2.set_xticks(list(range(2000, 2026, 5)))
+    ax2.grid(True, alpha=0.25)
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
 
-    add_endpoint_label(
-        ax2,
-        years,
-        any_algorithm_pct,
-        f"{any_algorithm_pct[-1]:.2f}%",
-        8,
-        -10,
-    )
-    add_endpoint_label(
-        ax2,
-        years,
-        missing_reporting_pct,
-        f"{missing_reporting_pct[-1]:.2f}%",
-        8,
-        10,
-    )
-    add_endpoint_label(
-        ax2,
-        years,
-        missing_parameters_pct,
-        f"{missing_parameters_pct[-1]:.2f}%",
-        8,
-        -6,
-    )
-    add_endpoint_label(
-        ax2,
-        years,
-        missing_justification_pct,
-        f"{missing_justification_pct[-1]:.2f}%",
-        8,
-        8,
-    )
-    add_endpoint_label(
-        ax2,
-        years,
-        missing_evaluation_pct,
-        f"{missing_evaluation_pct[-1]:.2f}%",
-        8,
-        -10,
-    )
-    add_endpoint_label(
-        ax2,
-        years,
-        missing_tuning_pct,
-        f"{missing_tuning_pct[-1]:.2f}%",
-        8,
-        12,
-    )
-
     ax2.legend(
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.2),
-        ncol=3,
+        bbox_to_anchor=(0.5, -0.18),
+        ncol=2,
         frameon=False,
+        fontsize=17,
     )
 
     ax1.text(
         0.01,
-        0.95,
+        1.03,
         "A",
         transform=ax1.transAxes,
-        fontsize=14,
+        fontsize=17,
         fontweight="bold",
-        va="top",
+        va="bottom",
     )
+
     ax2.text(
         0.01,
-        0.95,
+        1.03,
         "B",
         transform=ax2.transAxes,
-        fontsize=14,
+        fontsize=17,
         fontweight="bold",
-        va="top",
+        va="bottom",
     )
 
     output_dir = os.path.dirname(os.path.abspath(args.output))
@@ -268,6 +249,9 @@ def main() -> int:
         os.makedirs(output_dir, exist_ok=True)
 
     fig.savefig(args.output, dpi=args.dpi, bbox_inches="tight")
+    pdf_output = os.path.splitext(args.output)[0] + ".pdf"
+    fig.savefig(pdf_output, bbox_inches="tight")
+
     plt.close(fig)
 
     print(f"Saved figure to: {args.output}")
