@@ -160,7 +160,11 @@ def main() -> int:
         markersize=4,
         label="Total articles",
     )
-    ax1.set_ylabel("Articles per year")
+    ax1.set_ylabel("Articles per year", fontsize = 25, fontweight="bold", fontname="Arial")
+    for label in ax1.get_yticklabels():
+        label.set_fontsize(20)
+        label.set_fontweight("bold")
+        label.set_fontname("Arial")
     #ax1.set_title("Longitudinal summary of clustering-method reporting (2000–2025)")
     ax1.grid(True, alpha=0.25)
     ax1.spines["top"].set_visible(False)
@@ -207,10 +211,16 @@ def main() -> int:
         linestyle="--",
         label="Missing tuning",
     )
-
-    ax2.set_xlabel("Year")
-    ax2.set_ylabel("Articles (%)")
-    ax2.set_ylim(20, 102)
+    ax2.set_xlabel("Year", fontsize = 25, fontweight = "bold", fontname = "Arial")
+    ax2.set_ylabel("Articles (%)", fontsize = 25, fontweight = "bold", fontname = "Arial")
+    for label in ax2.get_yticklabels():
+        label.set_fontsize(20)
+        label.set_fontweight("bold")
+        label.set_fontname("Arial")
+    for label in ax2.get_xticklabels():
+        label.set_fontsize(20)
+        label.set_fontweight("bold")
+        label.set_fontname("Arial")
     ax2.set_xticks(list(range(2000, 2026, 5)))
     ax2.grid(True, alpha=0.25)
     ax2.spines["top"].set_visible(False)
@@ -221,7 +231,7 @@ def main() -> int:
         bbox_to_anchor=(0.5, -0.18),
         ncol=2,
         frameon=False,
-        fontsize=17,
+        prop={'size': 20, 'weight': 'bold', 'family': 'Arial'}
     )
 
     ax1.text(
