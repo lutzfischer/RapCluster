@@ -284,17 +284,28 @@ def make_main_figure(df: pd.DataFrame) -> go.Figure:
             row=3, col=1
         )
 
-    fig.add_trace(
-        go.Bar(
-            x=x, y=df["parse_errors"],
-            name="Parse errors",
-            hovertemplate="Year=%{x}<br>Errors=%{y:,}<extra></extra>"
-        ),
-        row=3, col=2
-    )
+    if df["parse_errors"].fillna(0).eq(0).all():
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=df["parse_errors"].fillna(0),
+                mode="lines",
+                name="Parse errors",
+                hovertemplate="Year=%{x}<br>Errors=%{y:,}<extra></extra>"
+            ),
+            row=3, col=2
+        )
+    else:
+        fig.add_trace(
+            go.Bar(
+                x=x, y=df["parse_errors"],
+                name="Parse errors",
+                hovertemplate="Year=%{x}<br>Errors=%{y:,}<extra></extra>"
+            ),
+            row=3, col=2
+        )
 
-    fig.update_xaxes(rangeslider_visible=True, row=3, col=1)
-    fig.update_xaxes(rangeslider_visible=True, row=3, col=2)
+    fig.update_xaxes(rangeslider_visible=False, row=3, col=1)
+    fig.update_xaxes(rangeslider_visible=False, row=3, col=2)
 
     fig.update_yaxes(type="log", row=1, col=1, title_text="Total (log)")
     fig.update_yaxes(row=1, col=1, secondary_y=True, title_text="")

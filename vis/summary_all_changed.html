@@ -1,0 +1,332 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+      :root { --bg:#0b0f19; --panel:#111827; --ink:#e5e7eb; --muted:#9ca3af; --border:#1f2937; --chip:#0f172a; }
+      body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; background: var(--bg); color: var(--ink); }
+      .wrap { max-width: 1200px; margin: 0 auto; padding: 22px 18px 40px; }
+      .title { font-size: 22px; font-weight: 700; letter-spacing: 0.2px; margin: 0 0 6px; }
+      .subtitle { color: var(--muted); margin: 0 0 18px; font-size: 13px; line-height: 1.35; }
+      .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 14px 0 18px; }
+      .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 12px 12px 10px; }
+      .card-title { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+      .card-value { font-size: 20px; font-weight: 700; }
+      .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 14px; margin-top: 14px; }
+      .panel-title { font-weight: 700; margin: 0 0 10px; }
+      .tbl { width:100%; border-collapse: collapse; font-size: 13px; }
+      .tbl th, .tbl td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      .tbl th { color: var(--muted); font-weight: 600; }
+      .note { color: var(--muted); font-size: 12px; margin-top: 10px; line-height: 1.35; }
+      .plotwrap { background: #ffffff; border-radius: 14px; overflow: hidden; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 12px; }
+      details.details { border: 1px solid var(--border); border-radius: 14px; background: var(--chip); margin-top: 10px; }
+      details.details summary { cursor: pointer; padding: 10px 12px; list-style: none; display:flex; gap:10px; align-items:center; }
+      details.details summary::-webkit-details-marker { display:none; }
+      details.details[open] summary { border-bottom: 1px solid var(--border); }
+      .details-body { padding: 10px 12px 12px; }
+      .muted { color: var(--muted); font-size: 12px; }
+      @media (max-width: 980px) { .grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+    </head><body>
+    <div class="wrap">
+      <div class="title">Summary of Datamining (2000-2025)</div>
+      <div class="subtitle">Year-level summary</div>
+      <div class="grid">
+            <div class="card">
+              <div class="card-title">Coverage window</div>
+              <div class="card-value">2000–2025</div>
+            </div>
+            
+
+            <div class="card">
+              <div class="card-title">Total articles (2025)</div>
+              <div class="card-value">110,541</div>
+            </div>
+            
+
+            <div class="card">
+              <div class="card-title">Any algorithm match (2025)</div>
+              <div class="card-value">93.11%</div>
+            </div>
+            
+
+            <div class="card">
+              <div class="card-title">Missing reporting signals (2025)</div>
+              <div class="card-value">96.82%</div>
+            </div>
+            
+
+            <div class="card">
+              <div class="card-title">Parse errors (2025)</div>
+              <div class="card-value">0</div>
+            </div>
+            </div>
+
+      <div class="panel">
+        <div class="panel-title">Trends</div>
+        <div class="plotwrap"><div>                        <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.34.0.min.js"></script>                <div id="c8cfa08e-a391-4625-981d-7ecc0f81de52" class="plotly-graph-div" style="height:1100px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("c8cfa08e-a391-4625-981d-7ecc0f81de52")) {                    Plotly.newPlot(                        "c8cfa08e-a391-4625-981d-7ecc0f81de52",                        [{"hovertemplate":"Year=%{x}\u003cbr\u003eTotal=%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines+markers","name":"Total articles","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[300,369,435,568,882,1310,1972,2908,4132,5308,7441,9616,12740,16321,19537,22918,26414,30401,35135,42034,56349,73084,86707,81279,87698,110541],"type":"scatter","xaxis":"x","yaxis":"y"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMatched=%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines+markers","name":"Any algorithm match ","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[272,338,415,535,831,1197,1792,2619,3746,4776,6556,8509,11246,14523,17484,20395,23325,27033,31249,37411,50230,65284,77164,72595,79463,102928],"type":"scatter","xaxis":"x","yaxis":"y2"},{"hovertemplate":"Year=%{x}\u003cbr\u003e% Match=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines+markers","name":"Any algorithm match (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[90.66666666666666,91.59891598915989,95.40229885057471,94.19014084507043,94.21768707482994,91.37404580152672,90.87221095334685,90.06189821182944,90.65827686350435,89.97739261492087,88.1064373068136,88.4879367720466,88.27315541601256,88.98351816677899,89.49173363361827,88.9911859673619,88.30544408268342,88.92141705864938,88.93980361462928,89.00176047961175,89.14088981170917,89.32734935143122,88.99396819172615,89.31581343274401,90.60982006431162,93.11296261115784],"type":"scatter","xaxis":"x2","yaxis":"y3"},{"hovertemplate":"Year=%{x}\u003cbr\u003e% Missing=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines+markers","name":"Missing reporting signals (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[100.0,99.1869918699187,99.08045977011494,99.29577464788733,99.65986394557824,99.16030534351144,98.93509127789046,98.55570839064649,99.05614714424009,98.9638281838734,98.95175379653273,99.07445923460898,99.11302982731554,98.95839715703694,98.86881302144648,98.92660790644908,98.85288104792913,98.63162395973816,98.50860964849865,98.49407622400913,98.34247280342153,98.13091784795577,98.15701154462731,97.81862473701695,97.625943579101,96.8247075745651],"type":"scatter","xaxis":"x3","yaxis":"y4"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing params (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing params (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[98.66666666666667,96.4769647696477,90.57471264367815,91.90140845070422,87.64172335600907,87.25190839694656,87.67748478701826,85.07565337001375,85.26137463697967,86.9819140919367,86.52062894772207,88.17595673876872,87.45682888540031,87.26793701366337,86.61514050263602,86.43424382581377,86.31407586885742,85.84586033354165,84.98078838764765,84.84084312699244,84.44160499742675,83.1768923430573,82.04527892788356,81.65085692491296,81.2127984674679,80.15397002017352],"type":"scatter","xaxis":"x4","yaxis":"y5"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing justification (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing justification (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[37.666666666666664,38.21138211382114,37.93103448275862,42.07746478873239,38.095238095238095,35.26717557251908,34.17849898580121,31.74002751031637,30.614714424007744,30.783722682743033,31.097970702862522,30.948419301164726,31.0596546310832,28.889161203357638,29.528586784050777,29.758268609826338,28.719618384190206,28.074734383737376,28.02618471609506,27.001950801731933,28.174413033061814,27.404082973017353,26.99205369808666,25.337418029257247,23.772491961048143,22.481251300422468],"type":"scatter","xaxis":"x4","yaxis":"y5"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing evaluation (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing evaluation (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[86.0,80.75880758807588,84.13793103448276,84.33098591549296,85.14739229024943,84.42748091603053,82.50507099391481,80.05502063273727,79.93707647628267,79.86058779201205,80.64776239752722,80.7716306156406,80.03139717425431,79.22921389620734,79.0756001433178,78.7197835762283,78.65904444612706,78.23755797506661,77.69176035292443,77.40876433363468,77.31636763740262,76.45585901154836,76.43096866458302,75.79202500030759,74.45095669228489,71.7525623976624],"type":"scatter","xaxis":"x4","yaxis":"y5"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing tuning (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing tuning (%)","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[93.33333333333333,94.3089430894309,92.87356321839081,91.02112676056338,91.49659863945578,88.85496183206106,87.67748478701826,87.37964236588721,87.39109390125847,87.56593820648078,88.60368230076602,88.99750415973378,88.61852433281004,87.89289871944122,88.68301172134923,88.1097827035518,87.6315590217309,87.13529160224994,86.38110146577486,85.63781700528143,85.31473495536744,84.53012971375404,83.50306203651378,82.45672313881815,81.3028803393464,78.28407559186185],"type":"scatter","xaxis":"x4","yaxis":"y5"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing params =%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing params ","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[296,356,394,522,773,1143,1729,2474,3523,4617,6438,8479,11142,14243,16922,19809,22799,26098,29858,35662,47582,60789,71139,66365,71222,88603],"type":"scatter","xaxis":"x5","yaxis":"y6"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing justification =%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing justification ","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[113,141,165,239,336,462,674,923,1265,1634,2314,2976,3957,4715,5769,6820,7586,8535,9847,11350,15876,20028,23404,20594,20848,24851],"type":"scatter","xaxis":"x5","yaxis":"y6"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing evaluation =%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing evaluation ","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[258,298,366,479,751,1106,1627,2328,3303,4239,6001,7767,10196,12931,15449,18041,20777,23785,27297,32538,43567,55877,66271,61603,65292,79316],"type":"scatter","xaxis":"x5","yaxis":"y6"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing tuning =%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing tuning ","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[280,348,404,517,807,1164,1729,2541,3611,4648,6593,8558,11290,14345,17326,20193,23147,26490,30350,35997,48074,61778,72403,67020,71301,86536],"type":"scatter","xaxis":"x5","yaxis":"y6"},{"hovertemplate":"Year=%{x}\u003cbr\u003eErrors=%{y:,}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Parse errors","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"type":"scatter","xaxis":"x6","yaxis":"y7"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,0.42]},"yaxis":{"anchor":"x","domain":[0.7466666666666667,1.0],"title":{"text":"Total (log)"},"type":"log"},"yaxis2":{"anchor":"x","overlaying":"y","side":"right","title":{"text":""},"type":"log"},"xaxis2":{"anchor":"y3","domain":[0.52,0.94]},"yaxis3":{"anchor":"x2","domain":[0.7466666666666667,1.0],"title":{"text":"Percent"}},"xaxis3":{"anchor":"y4","domain":[0.0,0.42]},"yaxis4":{"anchor":"x3","domain":[0.37333333333333335,0.6266666666666667],"title":{"text":"Percent"}},"xaxis4":{"anchor":"y5","domain":[0.52,0.94]},"yaxis5":{"anchor":"x4","domain":[0.37333333333333335,0.6266666666666667],"title":{"text":"Percent"}},"xaxis5":{"anchor":"y6","domain":[0.0,0.42],"rangeslider":{"visible":false}},"yaxis6":{"anchor":"x5","domain":[0.0,0.25333333333333335],"title":{"text":"Count"}},"xaxis6":{"anchor":"y7","domain":[0.52,0.94],"rangeslider":{"visible":false}},"yaxis7":{"anchor":"x6","domain":[0.0,0.25333333333333335],"title":{"text":"Count"}},"annotations":[{"font":{"size":16},"showarrow":false,"text":"Algorithm-match counts","x":0.21,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Algorithm-match rate (%)","x":0.73,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Missing reporting signals among all (%)","x":0.21,"xanchor":"center","xref":"paper","y":0.6266666666666667,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Missing reporting categories (rates, % of all articles)","x":0.73,"xanchor":"center","xref":"paper","y":0.6266666666666667,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Missing reporting categories ","x":0.21,"xanchor":"center","xref":"paper","y":0.25333333333333335,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Parse errors ","x":0.73,"xanchor":"center","xref":"paper","y":0.25333333333333335,"yanchor":"bottom","yref":"paper"}],"margin":{"l":60,"r":40,"t":70,"b":60},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"left","x":0.0},"height":1100,"hovermode":"x unified"},                        {"displaylogo": false, "responsive": true}                    )                };                            </script>        </div></div>
+        <div class="note">Use the range slider on the bottom panels to focus on specific eras; hover to read exact values.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Composition of missing reporting categories (stacked share, % of all missing flags)</div>
+        <div class="plotwrap"><div>                            <div id="02a03103-ff66-4e95-b29f-eb6716d6aed8" class="plotly-graph-div" style="height:520px; width:100%;"></div>            <script type="text/javascript">                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("02a03103-ff66-4e95-b29f-eb6716d6aed8")) {                    Plotly.newPlot(                        "02a03103-ff66-4e95-b29f-eb6716d6aed8",                        [{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing params share (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing params share (%)","stackgroup":"one","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[31.25659978880676,31.14610673665792,29.64635063957863,29.709732498577118,28.98387701537308,29.496774193548386,30.02257336343115,29.92983305105251,30.105964792343187,30.499405469678955,30.160217370936003,30.52195824334053,30.45510455104551,30.80633300168707,30.508780153607617,30.539753017899262,30.681344117132515,30.736797474914024,30.670145451557236,30.863631249621363,30.67846988052792,30.62850175339594,30.503350956405406,30.784109990630014,31.147146674363587,31.722555190364687],"type":"scatter"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing justification share (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing justification share (%)","stackgroup":"one","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[11.932418162618797,12.335958005249344,12.415349887133182,13.602731929425158,12.598425196850393,11.92258064516129,11.703420732766105,11.166223082506654,10.81011792855922,10.794028273219713,10.840438489646772,10.712742980561556,10.81590815908159,10.198122593762166,10.400966357768723,10.5144689576492,10.208723034894831,10.052056343336318,10.114840989399292,9.82284265277333,10.236042785575664,10.09109597323552,10.035289022669874,9.552745591004815,9.117347362712813,8.897410009093969],"type":"scatter"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing evaluation share (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing evaluation share (%)","stackgroup":"one","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[27.243928194297784,26.071741032370955,27.539503386004515,27.26237905520774,28.158980127484064,28.54193548387097,28.25143254037159,28.163561577546574,28.225944283028543,28.00237812128419,28.112995408975923,27.958963282937365,27.869345360120267,27.968594540814117,27.853099195903795,27.814007986062933,27.960273991037425,28.01267253969002,28.03948557810831,28.15996953620605,28.08980070793493,28.153593453988474,28.416024560816748,28.5752057221846,28.55381062961651,28.397528159080004],"type":"scatter"},{"hovertemplate":"Year=%{x}\u003cbr\u003eMissing tuning share (%)=%{y:.2f}%\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"Missing tuning share (%)","stackgroup":"one","x":[2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],"y":[29.567053854276665,30.446194225721783,30.39879608728367,29.425156516789986,30.25871766029246,30.038709677419355,30.02257336343115,30.740382288894263,30.85797299606905,30.70418813581715,30.8863487304413,30.806335493160546,30.85964192975263,31.02694986373664,31.237154292719865,31.131770038388602,31.14965885693523,31.198473642059643,31.175527980935165,31.15355656139926,30.995686625961483,31.126808819380063,31.04533546010797,31.087938696180572,31.18169533330709,30.982506641461338],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"margin":{"l":60,"r":40,"t":60,"b":60},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"left","x":0.0},"height":520,"title":{"text":""},"hovermode":"x unified","yaxis":{"title":{"text":"Share (%)"},"range":[0,100]}},                        {"displaylogo": false, "responsive": true}                    )                };                            </script>        </div></div>
+        <div class="note">Stacked shares normalize the four missing categories by their per-year sum to show dominance patterns over time.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Methods and definitions</div>
+        <div class="note">Operational definitions used by the text-mining pipeline, with the exact regex banks embedded.</div>
+      </div>
+
+      
+    <div class="panel">
+      <div class="panel-title">Snapshot (2025) + metric definitions</div>
+      <table class="tbl">
+        <thead><tr><th>Metric</th><th>Value</th><th>Definition</th></tr></thead>
+        <tbody><tr><td><span class='mono'>total_articles</span></td><td>110,541</td><td>Count of processed XML files assigned to that year.</td></tr>
+<tr><td><span class='mono'>articles_with_any_algorithm_match</span></td><td>102,928</td><td>Articles with algorithms_found non-empty.</td></tr>
+<tr><td><span class='mono'>pct_with_any_algorithm_match</span></td><td>93.11%</td><td>100 × articles_with_any_algorithm_match / total_articles.</td></tr>
+<tr><td><span class='mono'>articles_with_missing_reporting_signals</span></td><td>107,031</td><td>Articles where missing_reporting_signals=1.</td></tr>
+<tr><td><span class='mono'>pct_missing_reporting_signals_among_all</span></td><td>96.82%</td><td>100 × articles_with_missing_reporting_signals / total_articles.</td></tr>
+<tr><td><span class='mono'>missing_params</span></td><td>88,603</td><td>Articles where missing_params=1 (params_found empty).</td></tr>
+<tr><td><span class='mono'>missing_justification</span></td><td>24,851</td><td>Articles where missing_justification=1 (justification_found=0).</td></tr>
+<tr><td><span class='mono'>missing_evaluation</span></td><td>79,316</td><td>Articles where missing_evaluation=1 (evaluation_found=0).</td></tr>
+<tr><td><span class='mono'>missing_tuning</span></td><td>86,536</td><td>Articles where missing_tuning=1 (tuning_found=0).</td></tr>
+<tr><td><span class='mono'>parse_errors</span></td><td>0</td><td>Rows with non-empty error field; still counted in totals.</td></tr></tbody>
+      </table>
+      <div class="note">All signals are regex-based extractions from normalized body text; “missing” means “no regex match in that category”.</div>
+    </div>
+    
+      
+    <div class="panel">
+      <div class="panel-title">Field meanings (article-level) — click to expand</div>
+      <div class="note">Each field includes the exact operational definition and the regex bank used (verbatim).</div>
+      
+        <details class="details">
+          <summary><span class="mono">algorithms_found</span><span class="muted">distinct hits from DEFAULT_PATTERNS["algorithm"]</span></summary>
+          <div class="details-body">
+            <div class="note">
+              The pipeline searches the article body text against every regex in <span class="mono">DEFAULT_PATTERNS["algorithm"]</span> with case-insensitive matching.
+              Each regex contributes all non-overlapping matches it finds. Matched substrings are de-duplicated per article (case-folded) and emitted as a semicolon-joined list.
+              If the list is non-empty, the article contributes to <span class="mono">articles_with_any_algorithm_match</span> in the yearly summary.
+            </div>
+            
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Regex (verbatim)</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='mono'>\bk[\s-]?means\b</td></tr>
+<tr><td class='mono'>2</td><td class='mono'>\bmini[\s-]?batch[\s-]?k[\s-]?means\b</td></tr>
+<tr><td class='mono'>3</td><td class='mono'>\bk[\s-]?medoids\b|\bpam\b</td></tr>
+<tr><td class='mono'>4</td><td class='mono'>\bfuzzy\s*c[\s-]?means\b|\bc[\s-]?means\b</td></tr>
+<tr><td class='mono'>5</td><td class='mono'>\bhierarchical\s+clustering\b|\bagglomerative\s+clustering\b|\bdivisive\s+clustering\b</td></tr>
+<tr><td class='mono'>6</td><td class='mono'>\bward(?:&#39;s)?\b\s+method\b</td></tr>
+<tr><td class='mono'>7</td><td class='mono'>\bdbscan\b</td></tr>
+<tr><td class='mono'>8</td><td class='mono'>\bhdbscan\b</td></tr>
+<tr><td class='mono'>9</td><td class='mono'>\boptics\b</td></tr>
+<tr><td class='mono'>10</td><td class='mono'>\bmean\s*shift\b</td></tr>
+<tr><td class='mono'>11</td><td class='mono'>\bbirch\b</td></tr>
+<tr><td class='mono'>12</td><td class='mono'>\bspectral\s+clustering\b</td></tr>
+<tr><td class='mono'>13</td><td class='mono'>\baffinity\s+propagation\b</td></tr>
+<tr><td class='mono'>14</td><td class='mono'>\bgaussian\s+mixture(?:\s+model)?\b|\bgmm\b|\bmixture\s+model\b</td></tr>
+<tr><td class='mono'>15</td><td class='mono'>\bdirichlet\s+process\s+mixture\b|\bdpm\b</td></tr>
+<tr><td class='mono'>16</td><td class='mono'>\bself[-\s]?organizing\s+map\b|\bsom\b</td></tr>
+<tr><td class='mono'>17</td><td class='mono'>\bneural\s+gas\b</td></tr>
+<tr><td class='mono'>18</td><td class='mono'>\bmarkov\s+clustering\b|\bmcl\b</td></tr>
+<tr><td class='mono'>19</td><td class='mono'>\bgraph[-\s]?based\s+clustering\b</td></tr>
+<tr><td class='mono'>20</td><td class='mono'>\bcommunity\s+detection\b</td></tr>
+<tr><td class='mono'>21</td><td class='mono'>\blouvain\b</td></tr>
+<tr><td class='mono'>22</td><td class='mono'>\bleiden\b</td></tr>
+<tr><td class='mono'>23</td><td class='mono'>\bshared\s+nearest\s+neighbor\b|\bsnn\b</td></tr>
+<tr><td class='mono'>24</td><td class='mono'>\bphenograph\b</td></tr>
+<tr><td class='mono'>25</td><td class='mono'>\bseurat\b</td></tr>
+<tr><td class='mono'>26</td><td class='mono'>\bscanpy\b</td></tr>
+<tr><td class='mono'>27</td><td class='mono'>\bsc3\b</td></tr>
+<tr><td class='mono'>28</td><td class='mono'>\bcluster(?:ing|ed|s)?\b</td></tr></tbody>
+    </table>
+    
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">params_found</span><span class="muted">distinct hits from DEFAULT_PATTERNS["params"]</span></summary>
+          <div class="details-body">
+            <div class="note">
+              Same matching logic as <span class="mono">algorithms_found</span>, but using <span class="mono">DEFAULT_PATTERNS["params"]</span>.
+              This bank targets explicit parameter mentions (k, n_clusters, eps, min_samples, resolution, linkage, etc.).
+              If <span class="mono">params_found</span> is empty, then <span class="mono">missing_params=1</span>.
+            </div>
+            
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Regex (verbatim)</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='mono'>\bn[_\s-]?clusters\b</td></tr>
+<tr><td class='mono'>2</td><td class='mono'>\bnumber\s+of\s+clusters\b</td></tr>
+<tr><td class='mono'>3</td><td class='mono'>\b(?:k|K)\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>4</td><td class='mono'>\binit\b\s*=\s*(?:k[-\s]?means\+\+|random)\b</td></tr>
+<tr><td class='mono'>5</td><td class='mono'>\bn[_\s-]?init\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>6</td><td class='mono'>\bmax[_\s-]?iter(?:ations)?\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>7</td><td class='mono'>\btol(?:erance)?\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>8</td><td class='mono'>\beps\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>9</td><td class='mono'>\bmin[_\s-]?samples\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>10</td><td class='mono'>\bmin[_\s-]?cluster[_\s-]?size\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>11</td><td class='mono'>\bxi\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>12</td><td class='mono'>\bcluster[_\s-]?method\b\s*=\s*\w+\b</td></tr>
+<tr><td class='mono'>13</td><td class='mono'>\blinkage\b\s*=\s*(?:ward|complete|average|single)\b</td></tr>
+<tr><td class='mono'>14</td><td class='mono'>\b(?:distance|affinity)\s+metric\b</td></tr>
+<tr><td class='mono'>15</td><td class='mono'>\bmetric\b\s*=\s*(?:euclidean|cosine|manhattan|cityblock|chebyshev|minkowski|correlation)\b</td></tr>
+<tr><td class='mono'>16</td><td class='mono'>\bward\b\s+linkage\b</td></tr>
+<tr><td class='mono'>17</td><td class='mono'>\bcut(?:ting)?\s+the\s+dendrogram\b|\bcut\s+height\b</td></tr>
+<tr><td class='mono'>18</td><td class='mono'>\bn[_\s-]?components\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>19</td><td class='mono'>\bcovariance[_\s-]?type\b\s*=\s*(?:full|tied|diag|spherical)\b</td></tr>
+<tr><td class='mono'>20</td><td class='mono'>\bregulari[sz]ation\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>21</td><td class='mono'>\bn[_\s-]?neighbors\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>22</td><td class='mono'>\bgamma\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>23</td><td class='mono'>\bdamping\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>24</td><td class='mono'>\bpreference\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>25</td><td class='mono'>\bbandwidth\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>26</td><td class='mono'>\bresolution\b\s*=\s*[\deE\.\-]+\b</td></tr>
+<tr><td class='mono'>27</td><td class='mono'>\bmodularity\b</td></tr>
+<tr><td class='mono'>28</td><td class='mono'>\bkNN\b|\bk\s*nearest\s+neighbors\b</td></tr>
+<tr><td class='mono'>29</td><td class='mono'>\bneighbors\b\s*=\s*\d+\b</td></tr>
+<tr><td class='mono'>30</td><td class='mono'>\bUMAP\b.*\b(n[_\s-]?neighbors|min[_\s-]?dist)\b</td></tr>
+<tr><td class='mono'>31</td><td class='mono'>\bt-?SNE\b.*\b(perplexity|learning\s*rate)\b</td></tr></tbody>
+    </table>
+    
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">justification_found</span><span class="muted">binary: any hit in DEFAULT_PATTERNS["justification"]</span></summary>
+          <div class="details-body">
+            <div class="note">
+              Set to <span class="mono">1</span> if at least one regex in <span class="mono">DEFAULT_PATTERNS["justification"]</span> matches the body text; otherwise <span class="mono">0</span>.
+              This captures explicit rationale for choosing cluster count/resolution/thresholds (elbow/knee, gap statistic, “we chose… based on…”, etc.).
+              If the value is <span class="mono">0</span>, then <span class="mono">missing_justification=1</span>.
+            </div>
+            
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Regex (verbatim)</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='mono'>\belbow\b|\bknee\b</td></tr>
+<tr><td class='mono'>2</td><td class='mono'>\bgap\s+statistic\b</td></tr>
+<tr><td class='mono'>3</td><td class='mono'>\bsilhouette(?:\s+analysis|\s+score)?\b</td></tr>
+<tr><td class='mono'>4</td><td class='mono'>\b(?:chosen|selected|determined|set)\s+(?:based\s+on|according\s+to)\b</td></tr>
+<tr><td class='mono'>5</td><td class='mono'>\bwe\s+(?:chose|selected|set|determined)\b</td></tr>
+<tr><td class='mono'>6</td><td class='mono'>\bwas\s+(?:chosen|selected|determined|set)\b</td></tr>
+<tr><td class='mono'>7</td><td class='mono'>\bto\s+determine\s+(?:the\s+)?number\s+of\s+clusters\b</td></tr>
+<tr><td class='mono'>8</td><td class='mono'>\boptimal\s+(?:k|number\s+of\s+clusters|resolution)\b</td></tr>
+<tr><td class='mono'>9</td><td class='mono'>\bempiric(?:al|ally)\b</td></tr>
+<tr><td class='mono'>10</td><td class='mono'>\bconsistent\s+with\s+(?:previous|prior)\s+(?:work|studies)\b</td></tr>
+<tr><td class='mono'>11</td><td class='mono'>\bfollowing\s+(?:previous|prior)\s+(?:work|studies|protocol)\b</td></tr>
+<tr><td class='mono'>12</td><td class='mono'>\bas\s+described\s+(?:previously|elsewhere)\b</td></tr></tbody>
+    </table>
+    
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">evaluation_found</span><span class="muted">binary: any hit in DEFAULT_PATTERNS["evaluation"]</span></summary>
+          <div class="details-body">
+            <div class="note">
+              Set to <span class="mono">1</span> if at least one regex in <span class="mono">DEFAULT_PATTERNS["evaluation"]</span> matches the body text; otherwise <span class="mono">0</span>.
+              This captures explicit cluster validation or model diagnostics (silhouette, DBI, CH, ARI/NMI, BIC/AIC, stability, modularity, etc.).
+              If the value is <span class="mono">0</span>, then <span class="mono">missing_evaluation=1</span>.
+            </div>
+            
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Regex (verbatim)</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='mono'>\bsilhouette(?:\s+score|\s+coefficient)?\b</td></tr>
+<tr><td class='mono'>2</td><td class='mono'>\bdavies[-\s]?bouldin\b</td></tr>
+<tr><td class='mono'>3</td><td class='mono'>\bcalinski[-\s]?harabasz\b</td></tr>
+<tr><td class='mono'>4</td><td class='mono'>\bwithin[-\s]?cluster\s+sum\s+of\s+squares\b|\bWCSS\b</td></tr>
+<tr><td class='mono'>5</td><td class='mono'>\bbetween[-\s]?cluster\s+variance\b</td></tr>
+<tr><td class='mono'>6</td><td class='mono'>\bcluster\s+stability\b|\bstability\s+analysis\b</td></tr>
+<tr><td class='mono'>7</td><td class='mono'>\bbootstrap(?:ping)?\b.*\bcluster\b</td></tr>
+<tr><td class='mono'>8</td><td class='mono'>\badjusted\s+rand\b|\bARI\b</td></tr>
+<tr><td class='mono'>9</td><td class='mono'>\bnormalized\s+mutual\s+information\b|\bNMI\b</td></tr>
+<tr><td class='mono'>10</td><td class='mono'>\badjusted\s+mutual\s+information\b|\bAMI\b</td></tr>
+<tr><td class='mono'>11</td><td class='mono'>\bfowlkes[-\s]?mallows\b|\bFMI\b</td></tr>
+<tr><td class='mono'>12</td><td class='mono'>\bjaccard\b</td></tr>
+<tr><td class='mono'>13</td><td class='mono'>\bpurity\b</td></tr>
+<tr><td class='mono'>14</td><td class='mono'>\bBIC\b|\bAIC\b</td></tr>
+<tr><td class='mono'>15</td><td class='mono'>\blog[-\s]?likelihood\b</td></tr>
+<tr><td class='mono'>16</td><td class='mono'>\bmodularity\b</td></tr>
+<tr><td class='mono'>17</td><td class='mono'>\bconductance\b</td></tr></tbody>
+    </table>
+    
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">tuning_found</span><span class="muted">binary: any hit in DEFAULT_PATTERNS["tuning"]</span></summary>
+          <div class="details-body">
+            <div class="note">
+              Set to <span class="mono">1</span> if at least one regex in <span class="mono">DEFAULT_PATTERNS["tuning"]</span> matches the body text; otherwise <span class="mono">0</span>.
+              This captures explicit hyperparameter search language (grid/random search, Bayesian optimization, Optuna/Hyperopt, CV, etc.).
+              If the value is <span class="mono">0</span>, then <span class="mono">missing_tuning=1</span>.
+            </div>
+            
+    <table class="tbl">
+      <thead><tr><th>#</th><th>Regex (verbatim)</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='mono'>\bhyper[-\s]?parameter\s+(?:tuning|optimization|optimisation)\b</td></tr>
+<tr><td class='mono'>2</td><td class='mono'>\bparameter\s+sweep\b</td></tr>
+<tr><td class='mono'>3</td><td class='mono'>\bgrid\s+search\b</td></tr>
+<tr><td class='mono'>4</td><td class='mono'>\brandom(?:ized)?\s+search\b</td></tr>
+<tr><td class='mono'>5</td><td class='mono'>\bbayesian\s+optimization\b|\bbayesian\s+optimisation\b</td></tr>
+<tr><td class='mono'>6</td><td class='mono'>\boptuna\b|\bhyperopt\b|\bskopt\b</td></tr>
+<tr><td class='mono'>7</td><td class='mono'>\bcross[-\s]?validation\b|\bCV\b</td></tr>
+<tr><td class='mono'>8</td><td class='mono'>\bnested\s+cross[-\s]?validation\b</td></tr>
+<tr><td class='mono'>9</td><td class='mono'>\b(?:tuned|optimized|optimised|selected)\s+using\b</td></tr>
+<tr><td class='mono'>10</td><td class='mono'>\bwe\s+(?:tuned|optimized|optimised)\b</td></tr></tbody>
+    </table>
+    
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">missing_params</span><span class="muted">derived: params_found empty</span></summary>
+          <div class="details-body">
+            <div class="note">Computed as <span class="mono">int(len(params_found)==0)</span>.</div>
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">missing_justification</span><span class="muted">derived: justification_found==0</span></summary>
+          <div class="details-body">
+            <div class="note">Computed as <span class="mono">int(justification_found==0)</span>.</div>
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">missing_evaluation</span><span class="muted">derived: evaluation_found==0</span></summary>
+          <div class="details-body">
+            <div class="note">Computed as <span class="mono">int(evaluation_found==0)</span>.</div>
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">missing_tuning</span><span class="muted">derived: tuning_found==0</span></summary>
+          <div class="details-body">
+            <div class="note">Computed as <span class="mono">int(tuning_found==0)</span>.</div>
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">missing_reporting_signals</span><span class="muted">derived: OR of missing flags</span></summary>
+          <div class="details-body">
+            <div class="note">Computed as <span class="mono">int(missing_params or missing_justification or missing_evaluation or missing_tuning)</span>.</div>
+          </div>
+        </details>
+        
+        <details class="details">
+          <summary><span class="mono">parse_errors</span><span class="muted">row status: extraction failure</span></summary>
+          <div class="details-body">
+            <div class="note">
+              If XML parsing/extraction/analysis raises an exception, the row is still emitted with an <span class="mono">error</span> field set.
+              Downstream, year-level <span class="mono">parse_errors</span> counts such rows.
+            </div>
+          </div>
+        </details>
+        
+    </div>
+    
+    </div>
+    </body></html>
