@@ -361,7 +361,7 @@ def cluster_data():
     elif file_extension in ['.xls', '.xlsx']:
         file_type = 'xlsx'
     else:
-        return jsonify({"error": "Unsupported file format. Please upload CSV, TSV, or XLSX."}), 400
+        return jsonify({"error": "Unsupported file format. Please upload TSV."}), 400
 
     try:
 

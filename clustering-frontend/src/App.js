@@ -211,7 +211,7 @@ function App() {
       if (['csv', 'tsv', 'xlsx', 'xls'].includes(ext)) {
         setFileType(ext === 'xls' ? 'xlsx' : ext); 
       } else {
-        setError('Unsupported file type. Please select a CSV, TSV, or XLSX file.');
+        setError('Unsupported file type. Please select a TSV file.');
         setFile(null);
         setFileName('');
         setFileType('');
@@ -799,7 +799,7 @@ function App() {
           <section className="input-section">
             <h2>1. Upload Data</h2>
             <div className="form-group">
-              <label htmlFor="file-upload">Select File (CSV, TSV, XLSX):</label>
+              <label htmlFor="file-upload">Select File (TSV):</label>
               <input 
                 type="file" 
                 id="file-upload" 
