@@ -136,7 +136,7 @@ function App() {
     const fetchAlgorithms = async () => {
       try {
         // const response = await fetch('http://127.0.0.1:5000/api/algorithms');
-        const response = await fetch('/api/algorithms');
+        const response = await fetch('/rapcluster/api/algorithms');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -409,7 +409,7 @@ function App() {
 
     try {
       // const response = await fetch('http://127.0.0.1:5000/api/cluster', {
-      const response = await fetch('/api/cluster', {
+      const response = await fetch('/rapcluster/api/cluster', {
         method: 'POST',
         body: formData,
       });
