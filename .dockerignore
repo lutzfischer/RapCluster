@@ -1,0 +1,10 @@
+.git
+.gitignore
+node_modules
+clustering-frontend/node_modules
+clustering-frontend/build
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store

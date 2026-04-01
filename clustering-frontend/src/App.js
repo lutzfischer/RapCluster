@@ -135,7 +135,8 @@ function App() {
   useEffect(() => {
     const fetchAlgorithms = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/algorithms');
+        // const response = await fetch('http://127.0.0.1:5000/api/algorithms');
+        const response = await fetch('/api/algorithms');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -407,7 +408,8 @@ function App() {
     console.log("Sending clustering params:", finalAlgorithmParams);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/cluster', {
+      // const response = await fetch('http://127.0.0.1:5000/api/cluster', {
+      const response = await fetch('/api/cluster', {
         method: 'POST',
         body: formData,
       });
@@ -790,7 +792,7 @@ function App() {
           style={{ height: '90px', marginRight: '40px' }}
         />
         </div>
-          <h1 style={{ flexGrow: 1, textAlign: 'center', margin: 0 }}>Explore, Tune, and Compare Clustering Methods at Scale</h1>
+          <h1 style={{ flexGrow: 1, textAlign: 'center', margin: 0 }}>The Cluster at Your Fingertips</h1>
           <div style={{ width: '70px' }} /> {/* filler to balance the logo space */}
         </div>
       </header>
