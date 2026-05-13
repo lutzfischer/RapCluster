@@ -140,8 +140,8 @@ function App() {
   useEffect(() => {
     const fetchAlgorithms = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/algorithms');
-        //const response = await fetch('/rapcluster/api/algorithms');
+        // const response = await fetch('http://127.0.0.1:5000/api/algorithms');
+        const response = await fetch('/rapcluster/api/algorithms');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -415,8 +415,8 @@ function App() {
     console.log("Sending clustering params:", finalAlgorithmParams);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/cluster', {
-      //const response = await fetch('/rapcluster/api/cluster', {
+      //const response = await fetch('http://127.0.0.1:5000/api/cluster', {
+      const response = await fetch('/rapcluster/api/cluster', {
         method: 'POST',
         body: formData,
       });
@@ -983,9 +983,10 @@ function App() {
   }, [showHeatmapDendrogram, heatmapRows, buildDendrogram]);
   const orderedHeatmapRows = heatmapDendrogram?.orderedRows || heatmapRows;
   const hasVisibleDendrogram = Boolean(heatmapDendrogram);
+  const heatmapRowPixelHeight = heatmapCluster === 'summary' ? 38 : 18;
   const heatmapHeight = heatmapCluster === 'summary'
-    ? Math.max(360, heatmapSummaryRows.length * 34 + 160)
-    : Math.min(2600, Math.max(420, visibleHeatmapRows.length * 8 + 180));
+    ? Math.max(380, heatmapSummaryRows.length * heatmapRowPixelHeight + 170)
+    : Math.min(4200, Math.max(520, visibleHeatmapRows.length * heatmapRowPixelHeight + 190));
   const heatmapRowPositions = orderedHeatmapRows.map((_, index) => index);
   const heatmapTrace = {
     type: 'heatmap',
