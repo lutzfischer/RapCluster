@@ -982,6 +982,10 @@ function App() {
     return buildDendrogram(heatmapRows);
   }, [showHeatmapDendrogram, heatmapRows, buildDendrogram]);
   const orderedHeatmapRows = heatmapDendrogram?.orderedRows || heatmapRows;
+  const hasVisibleDendrogram = Boolean(heatmapDendrogram);
+  const heatmapHeight = heatmapCluster === 'summary'
+    ? Math.max(360, heatmapSummaryRows.length * 34 + 160)
+    : Math.min(2600, Math.max(420, visibleHeatmapRows.length * 8 + 180));
   const heatmapData = [{
     type: 'heatmap',
     z: orderedHeatmapRows.map(row => row.values),
@@ -990,7 +994,7 @@ function App() {
     colorscale: 'RdBu',
     reversescale: true,
     zmid: 0,
-        colorbar: { title: heatmapValueLabel },
+    colorbar: { title: heatmapValueLabel },
     hovertemplate: `%{y}<br>%{x}: %{z:.3f}<br>${heatmapValueLabel}<extra></extra>`
   }];
 
@@ -998,11 +1002,14 @@ function App() {
     title: heatmapCluster === 'summary'
       ? `Cluster ${heatmapAggregation === 'mean' ? 'Mean' : 'Median'} Profiles`
       : `Cluster ${heatmapCluster} Profiles`,
-    height: heatmapCluster === 'summary'
-      ? Math.max(450, heatmapSummaryRows.length * 34 + 180)
-      : Math.min(1200, Math.max(520, visibleHeatmapRows.length * 12 + 180)),
-    width: 1000,
-    margin: { l: heatmapCluster === 'summary' ? 170 : 220, r: 40, t: 70, b: 120 },
+    height: heatmapHeight,
+    width: hasVisibleDendrogram ? 900 : 1000,
+    margin: {
+      l: hasVisibleDendrogram ? 8 : (heatmapCluster === 'summary' ? 170 : 220),
+      r: hasVisibleDendrogram ? 210 : 40,
+      t: 70,
+      b: 120
+    },
     xaxis: {
       title: 'Intensity columns',
       automargin: true,
@@ -1012,6 +1019,7 @@ function App() {
       title: heatmapCluster === 'summary' ? 'Clusters' : nameColumn,
       automargin: true,
       autorange: 'reversed',
+      side: hasVisibleDendrogram ? 'right' : 'left',
       showticklabels: heatmapCluster === 'summary' || visibleHeatmapRows.length <= 120
     },
     plot_bgcolor: '#fcfcfc',
@@ -1019,9 +1027,9 @@ function App() {
   };
   const dendrogramLayout = {
     title: 'Hierarchical ordering',
-    height: heatmapLayout.height,
-    width: 220,
-    margin: { l: 10, r: 10, t: 70, b: 120 },
+    height: heatmapHeight,
+    width: 170,
+    margin: { l: 8, r: 0, t: 70, b: 120 },
     xaxis: {
       title: 'Distance',
       showgrid: false,
