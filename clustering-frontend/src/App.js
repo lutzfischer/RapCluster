@@ -986,60 +986,72 @@ function App() {
   const heatmapHeight = heatmapCluster === 'summary'
     ? Math.max(360, heatmapSummaryRows.length * 34 + 160)
     : Math.min(2600, Math.max(420, visibleHeatmapRows.length * 8 + 180));
-  const heatmapData = [{
+  const heatmapRowPositions = orderedHeatmapRows.map((_, index) => index);
+  const heatmapTrace = {
     type: 'heatmap',
     z: orderedHeatmapRows.map(row => row.values),
     x: heatmapColumnLabels,
-    y: orderedHeatmapRows.map(row => row.label),
+    y: heatmapRowPositions,
+    xaxis: hasVisibleDendrogram ? 'x2' : 'x',
+    yaxis: 'y',
+    customdata: orderedHeatmapRows.map(row => row.values.map(() => row.label)),
     colorscale: 'RdBu',
     reversescale: true,
     zmid: 0,
     colorbar: { title: heatmapValueLabel },
-    hovertemplate: `%{y}<br>%{x}: %{z:.3f}<br>${heatmapValueLabel}<extra></extra>`
-  }];
+    hovertemplate: `%{customdata}<br>%{x}: %{z:.3f}<br>${heatmapValueLabel}<extra></extra>`
+  };
+  const heatmapData = hasVisibleDendrogram
+    ? [
+        ...heatmapDendrogram.traces.map(trace => ({
+          ...trace,
+          xaxis: 'x',
+          yaxis: 'y'
+        })),
+        heatmapTrace
+      ]
+    : [heatmapTrace];
 
   const heatmapLayout = {
     title: heatmapCluster === 'summary'
       ? `Cluster ${heatmapAggregation === 'mean' ? 'Mean' : 'Median'} Profiles`
       : `Cluster ${heatmapCluster} Profiles`,
     height: heatmapHeight,
-    width: hasVisibleDendrogram ? 900 : 1000,
+    width: 1100,
     margin: {
-      l: hasVisibleDendrogram ? 8 : (heatmapCluster === 'summary' ? 170 : 220),
-      r: hasVisibleDendrogram ? 210 : 40,
+      l: hasVisibleDendrogram ? 40 : (heatmapCluster === 'summary' ? 170 : 220),
+      r: 40,
       t: 70,
       b: 120
     },
     xaxis: {
-      title: 'Intensity columns',
-      automargin: true,
-      tickangle: heatmapColumnLabels.length > 12 ? -45 : 0
-    },
-    yaxis: {
-      title: heatmapCluster === 'summary' ? 'Clusters' : nameColumn,
-      automargin: true,
-      autorange: 'reversed',
-      side: hasVisibleDendrogram ? 'right' : 'left',
-      showticklabels: heatmapCluster === 'summary' || visibleHeatmapRows.length <= 120
-    },
-    plot_bgcolor: '#fcfcfc',
-    paper_bgcolor: '#fcfcfc'
-  };
-  const dendrogramLayout = {
-    title: 'Hierarchical ordering',
-    height: heatmapHeight,
-    width: 170,
-    margin: { l: 8, r: 0, t: 70, b: 120 },
-    xaxis: {
-      title: 'Distance',
+      title: hasVisibleDendrogram ? 'Distance' : 'Intensity columns',
+      domain: hasVisibleDendrogram ? [0, 0.16] : [0, 1],
       showgrid: false,
       zeroline: false,
-      range: [Math.max(heatmapDendrogram?.maxDistance || 1, 1e-6), 0]
+      range: hasVisibleDendrogram ? [Math.max(heatmapDendrogram?.maxDistance || 1, 1e-6), 0] : undefined,
+      automargin: true,
+      tickangle: hasVisibleDendrogram ? 0 : (heatmapColumnLabels.length > 12 ? -45 : 0)
     },
+    ...(hasVisibleDendrogram ? {
+      xaxis2: {
+        title: 'Intensity columns',
+        domain: [0.31, 1],
+        anchor: 'y',
+        automargin: true,
+        tickangle: heatmapColumnLabels.length > 12 ? -45 : 0
+      }
+    } : {}),
     yaxis: {
-      visible: false,
-      autorange: 'reversed',
-      range: [-0.5, Math.max(orderedHeatmapRows.length - 0.5, 0.5)]
+      title: heatmapCluster === 'summary' ? 'Clusters' : nameColumn,
+      anchor: hasVisibleDendrogram ? 'x2' : 'x',
+      side: 'left',
+      tickmode: 'array',
+      tickvals: heatmapRowPositions,
+      ticktext: orderedHeatmapRows.map(row => row.label),
+      range: [Math.max(orderedHeatmapRows.length - 0.5, 0.5), -0.5],
+      automargin: true,
+      showticklabels: heatmapCluster === 'summary' || visibleHeatmapRows.length <= 120
     },
     plot_bgcolor: '#fcfcfc',
     paper_bgcolor: '#fcfcfc',
@@ -1501,27 +1513,13 @@ function App() {
                     </label>
                   </div>
 
-                  {heatmapData[0]?.z?.length > 0 ? (
+                  {heatmapTrace.z.length > 0 ? (
                     <div className="heatmap-plot-row">
-                      {showHeatmapDendrogram && (
-                        <div className="dendrogram-panel">
-                          <div className="dendrogram-title">Hierarchical dendrogram</div>
-                          {heatmapDendrogram ? (
-                            <Plot
-                              data={heatmapDendrogram.traces}
-                              layout={dendrogramLayout}
-                              config={{
-                                responsive: true,
-                                displayModeBar: false,
-                              }}
-                            />
-                          ) : (
-                            <div className="dendrogram-placeholder">
-                              {heatmapRows.length < 2
-                                ? 'At least two rows are needed.'
-                                : `Reduce rows to ${dendrogramRowLimit} or fewer.`}
-                            </div>
-                          )}
+                      {showHeatmapDendrogram && !heatmapDendrogram && (
+                        <div className="dendrogram-placeholder">
+                          {heatmapRows.length < 2
+                            ? 'At least two rows are needed for the dendrogram.'
+                            : `Reduce rows to ${dendrogramRowLimit} or fewer to show the dendrogram.`}
                         </div>
                       )}
                       <Plot
