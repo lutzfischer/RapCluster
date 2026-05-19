@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import Modal from 'react-modal';
 // import Plot from 'react-plotly.js-basic-dist';
 import Plot from 'react-plotly.js';
+import { readString } from 'react-papaparse';
 import * as XLSX from 'xlsx';
 import './App.css';
 import AlgorithmGuideDR from './AlgorithmGuideDR';
@@ -105,6 +106,9 @@ function App() {
   const [fileName, setFileName] = useState('');
   const [fileType, setFileType] = useState('');
   const [columnNames, setColumnNames] = useState([]);
+  const [excelSheetNames, setExcelSheetNames] = useState([]);
+  const [excelColumnsBySheet, setExcelColumnsBySheet] = useState({});
+  const [selectedSheetName, setSelectedSheetName] = useState('');
   const [nameColumn, setNameColumn] = useState('Name');
   const [intensityStartIndex, setIntensityStartIndex] = useState(1); 
   const [loading, setLoading] = useState(false);
@@ -167,19 +171,74 @@ function App() {
       .filter(Boolean);
   };
 
-  const getDelimitedColumnNames = async (selectedFile, ext) => {
-    const fileText = await selectedFile.text();
-    const firstContentLine = fileText
-      .split(/\r?\n/)
-      .find(line => line.trim().length > 0)
-      ?.replace(/^\uFEFF/, '');
 
-    if (!firstContentLine) {
-      return [];
+  async function readFirstLine(file) {
+    const reader = file.stream().getReader();
+    const decoder = new TextDecoder();
+
+    let buffer = '';
+
+    while (true) {
+      const { value, done } = await reader.read();
+
+      if (done) {
+        // File ended before newline
+        return buffer || null;
+      }
+
+      buffer += decoder.decode(value, { stream: true });
+
+      const newlineIndex = buffer.search(/\r?\n/);
+
+      if (newlineIndex >= 0) {
+        await reader.cancel();
+
+        return buffer
+          .slice(0, newlineIndex)
+          .replace(/^\uFEFF/, '');
+      }
     }
+  }
+
+  const getDelimitedColumnNames = async (selectedFile, ext) => {
+    const header = await readFirstLine(selectedFile);
 
     const delimiter = ext === 'tsv' ? '\t' : ',';
-    return parseDelimitedHeaderLine(firstContentLine, delimiter);
+    return parseDelimitedHeaderLine(header, delimiter);
+  };
+
+  const getExcelMetadata = async (selectedFile) => {
+    const fileBuffer = await selectedFile.arrayBuffer();
+    const workbook = XLSX.read(fileBuffer, { type: 'array' });
+    const sheetNames = workbook.SheetNames || [];
+    const columnsBySheet = {};
+
+    sheetNames.forEach(sheetName => {
+      const worksheet = workbook.Sheets[sheetName];
+      const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '', blankrows: false });
+      const headerRow = rows.find(row => Array.isArray(row) && row.some(cell => String(cell).trim().length > 0)) || [];
+      columnsBySheet[sheetName] = headerRow
+        .map(cell => String(cell).trim())
+        .filter(Boolean);
+    });
+
+    return { sheetNames, columnsBySheet };
+  };
+
+  const handleNameColumnChange = (newNameColumn) => {
+    setNameColumn(newNameColumn);
+  };
+
+  const handleExcelSheetChange = (sheetName) => {
+    setSelectedSheetName(sheetName);
+    const headers = excelColumnsBySheet[sheetName] || [];
+    setColumnNames(headers);
+    setNameColumn(previousNameColumn => {
+      const updatedNameColumn = headers.includes(previousNameColumn)
+        ? previousNameColumn
+        : (headers[0] || 'Name');
+      return updatedNameColumn;
+    });
   };
 
   useEffect(() => {
@@ -268,6 +327,9 @@ function App() {
           try {
             const headers = await getDelimitedColumnNames(selectedFile, normalizedType);
             setColumnNames(headers);
+            setExcelSheetNames([]);
+            setExcelColumnsBySheet({});
+            setSelectedSheetName('');
             setNameColumn(previousNameColumn => {
               if (headers.includes(previousNameColumn)) {
                 return previousNameColumn;
@@ -278,21 +340,51 @@ function App() {
             console.error('Failed to read column names from file:', readError);
             setColumnNames([]);
           }
+        } else if (normalizedType === 'xlsx') {
+          try {
+            const { sheetNames, columnsBySheet } = await getExcelMetadata(selectedFile);
+            setExcelSheetNames(sheetNames);
+            setExcelColumnsBySheet(columnsBySheet);
+
+            const defaultSheet = sheetNames[0] || '';
+            const headers = defaultSheet ? (columnsBySheet[defaultSheet] || []) : [];
+            const defaultNameColumn = headers[0] || 'Name';
+
+            setSelectedSheetName(defaultSheet);
+            setColumnNames(headers);
+            setNameColumn(defaultNameColumn);
+          } catch (readError) {
+            console.error('Failed to read Excel metadata:', readError);
+            setExcelSheetNames([]);
+            setExcelColumnsBySheet({});
+            setSelectedSheetName('');
+            setColumnNames([]);
+            setError('Could not read workbook sheets/columns from the selected Excel file.');
+          }
         } else {
           setColumnNames([]);
+          setExcelSheetNames([]);
+          setExcelColumnsBySheet({});
+          setSelectedSheetName('');
         }
       } else {
-        setError('Unsupported file type. Please select a TSV file.');
+        setError('Unsupported file type. Please select a CSV, TSV, or Excel file.');
         setFile(null);
         setFileName('');
         setFileType('');
         setColumnNames([]);
+        setExcelSheetNames([]);
+        setExcelColumnsBySheet({});
+        setSelectedSheetName('');
       }
     } else {
       setFile(null);
       setFileName('');
       setFileType('');
       setColumnNames([]);
+      setExcelSheetNames([]);
+      setExcelColumnsBySheet({});
+      setSelectedSheetName('');
     }
   };
 
@@ -427,10 +519,17 @@ function App() {
       return;
     }
 
+    if (fileType === 'xlsx' && !selectedSheetName) {
+      setError('Please select an Excel sheet first.');
+      setLoading(false);
+      return;
+    }
+
     const formData = new FormData();
     formData.append('file', file);
     formData.append('nameColumn', nameColumn);
     formData.append('intensityStartIndex', intensityStartIndex);
+    formData.append('sheetName', fileType === 'xlsx' ? selectedSheetName : '');
     formData.append('reductionMethod', selectedReduction);
     
     // Determine which parameters to send for reduction
@@ -1149,6 +1248,9 @@ function App() {
     setFileName('');
     setFileType('');
     setColumnNames([]);
+    setExcelSheetNames([]);
+    setExcelColumnsBySheet({});
+    setSelectedSheetName('');
     setNameColumn('Name');
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
@@ -1228,7 +1330,7 @@ function App() {
               </a>
             </h2>
             <div className="form-group">
-              <label htmlFor="file-upload">Select File (TSV):</label>
+              <label htmlFor="file-upload">Select File (CSV/TSV/Excel):</label>
               <input 
                 type="file" 
                 id="file-upload" 
@@ -1239,13 +1341,29 @@ function App() {
               {fileName && <span className="file-name">{fileName} <button type="button" onClick={clearFileInput}>x</button></span>}
             </div>
 
+            {fileType === 'xlsx' && excelSheetNames.length > 0 && (
+              <div className="form-group">
+                <label htmlFor="sheet-selector">Sheet:</label>
+                <select
+                  id="sheet-selector"
+                  value={selectedSheetName}
+                  onChange={(e) => handleExcelSheetChange(e.target.value)}
+                  required
+                >
+                  {excelSheetNames.map(sheetName => (
+                    <option key={sheetName} value={sheetName}>{sheetName}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
             <div className="form-group">
               <label htmlFor="name-column">Name of Node Column:</label>
-              {['csv', 'tsv'].includes(fileType) && columnNames.length > 0 ? (
+              {['csv', 'tsv', 'xlsx'].includes(fileType) && columnNames.length > 0 ? (
                 <select
                   id="name-column"
                   value={columnNames.includes(nameColumn) ? nameColumn : columnNames[0]}
-                  onChange={(e) => setNameColumn(e.target.value)}
+                  onChange={(e) => handleNameColumnChange(e.target.value)}
                   required
                 >
                   {columnNames.map(columnName => (
@@ -1257,7 +1375,7 @@ function App() {
                   type="text"
                   id="name-column"
                   value={nameColumn}
-                  onChange={(e) => setNameColumn(e.target.value)}
+                  onChange={(e) => handleNameColumnChange(e.target.value)}
                   placeholder="e.g., GeneName"
                   required
                 />

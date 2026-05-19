@@ -133,7 +133,14 @@ REDUCTION_PARAMS = {
 
 
 
-def load_data(file_path, file_content, file_type, name_column, intensity_start_index):
+def load_data(
+    file_path,
+    file_content,
+    file_type,
+    name_column,
+    intensity_start_index,
+    sheet_name=None,
+):
     """
     Loads data from various file types (CSV, TSV, XLSX) and preprocesses it.
     """
@@ -144,7 +151,10 @@ def load_data(file_path, file_content, file_type, name_column, intensity_start_i
         elif file_type == 'tsv':
             df = pd.read_csv(file_content, sep='\t')
         elif file_type == 'xlsx':
-            df = pd.read_excel(file_content)
+            df = pd.read_excel(
+                file_content,
+                sheet_name=sheet_name if sheet_name else 0
+            )
         else:
             raise ValueError(f"Unsupported file type: {file_type}")
 
@@ -321,8 +331,8 @@ def cluster_data():
 
     try:
         name_column = request.form.get('nameColumn')
-        intensity_start_index = int(request.form.get('intensityStartIndex'))
-        
+        intensity_start_index = int(request.form.get('intensityStartIndex', 1))
+        sheet_name = request.form.get('sheetName', '').strip()
         reduction_method = request.form.get('reductionMethod', 'None')
         reduction_params_str = request.form.get('reductionParams', '{}')
         
@@ -362,11 +372,23 @@ def cluster_data():
     elif file_extension in ['.xls', '.xlsx']:
         file_type = 'xlsx'
     else:
-        return jsonify({"error": "Unsupported file format. Please upload TSV."}), 400
+        return jsonify({
+            "error": (
+                "Unsupported file format. "
+                "Please upload CSV, TSV, or Excel."
+            )
+        }), 400
 
     try:
 
-        original_data, names, data_log10_transformed, intensity_columns = load_data(file.filename, file.stream, file_type, name_column, intensity_start_index)
+        original_data, names, data_log10_transformed, intensity_columns = load_data(
+            file.filename,
+            file.stream,
+            file_type,
+            name_column,
+            intensity_start_index,
+            sheet_name=sheet_name if file_type == 'xlsx' else None,
+        )
         
         X_processed = apply_dimensionality_reduction(original_data, reduction_method, reduction_params)
         
@@ -431,6 +453,7 @@ def cluster_data():
     except Exception as e:
         app.logger.error(f"An unhandled error occurred: {e}", exc_info=True)
         return jsonify({"error": f"An unexpected server error occurred: {e}"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
